@@ -10,8 +10,6 @@
             margin: 0;
             padding: 0;
             display: flex;
-            /*background-color: #f4f4f4;*/
-
         }
         .container {
             display: flex;
@@ -27,7 +25,6 @@
             width: 20vw;
             height: 100%;
             padding: 20px;
-            /*background-color: #f4f4f4;*/
             text-align: center;
         }
         .left img {
@@ -45,14 +42,6 @@
             flex: 1;
             padding: 20px;
         }
-        h2 {
-            margin: 0;
-            font-size: 24px;
-        }
-        h3 {
-            margin: 5px;
-            font-size: 20px;
-        }
         p {
             font-size: 16px;
             line-height: 1.5;
@@ -60,6 +49,9 @@
         }
         .right h2{
             font-size: 32px;
+        }
+        .right h3{
+            font-size: 24px;
         }
         .right p {
             font-size: 24px;
@@ -73,28 +65,77 @@
                 width: 100%;
             }
         }
-        .dashed-div {
-            position: relative; /* 使得伪元素相对于div定位 */
+        .dashed-div-first {
+            position: relative;
             padding: 20px;
             background-color: #f0f0f0;
-            border: 1px solid #ccc; /* 可选：给div添加边框 */
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-top: 2px solid #ccc;
+        }
+
+        .dashed-div-first::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            border-bottom: 2px dashed #000;
+        }
+
+        .dashed-div {
+            position: relative;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
         }
 
         .dashed-div::after {
-            content: ""; /* 伪元素内容为空 */
-            position: absolute; /* 绝对定位 */
-            left: 0; /* 左对齐 */
-            bottom: 0; /* 底部对齐 */
-            width: 100%; /* 宽度为100% */
-            border-bottom: 2px dashed #000; /* 虚线样式 */
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            border-bottom: 2px dashed #000;
+        }
+        .end-div {
+            position: relative;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+        .end-div::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            border-bottom: 2px solid #000;
+        }
+        .dashed-div-fin {
+            position: relative;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .dashed-div-fin::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="left">
-            <a href="https://imgse.com/i/pARhMAf"><img src="https://s21.ax1x.com/2024/11/18/pARhMAf.png" alt="pARhMAf.png" border="0" /></a>
-
+            <a href="https://imgse.com/i/pARhMAf"><img src="https://s21.ax1x.com/2024/11/18/pARhMAf.png" alt="pARhMAf.png"/></a>
             <h2>Zhizhao Liu</h2>
             <p>School: NUDT</p>
             <p>Email: <a href="mailto:liuzhizhao@nudt.edu.cn">liuzhizhao@nudt.edu.cn</a></p>
@@ -104,27 +145,54 @@
         </div>
         <div class="right">
             <h2>Profile</h2>
-            <p>My name is Liu Zhizhao. I graduated from Northeastern University with a bachelor's degree in engineering and am currently pursuing a PhD at the University of National Defense Technology.</p>
+            <p>
+                My name is Liu Zhizhao. I graduated from Northeastern University with a bachelor's degree in engineering and am currently pursuing a PhD at the University of National Defense Technology.
+            </p>
             <p>
                 My doctoral major is computer science and technology, and I am currently engaged in research related to natural language processing, mainly focusing on text generation and hallucination problems. I also have some research and engineering experience in mechanical engineering and computational mathematics.
             </p>
             <p>
                 Welcome to communicate with me via email!
             </p>
-
             <h2>
                 Projects
             </h2>
-            <p>
-                <a href="https://github.com/lzz335/easy-get_arxiv-paper">easy arxiv</a>: This open-source project provides a quick way to obtain arxiv documents.
-            </p>
-            <p>
-                <a href="https://github.com/low-rank-mice">
-                    "Rat" Group
-                </a>: I organized and maintained Community "Rat" Group, which provided support on recommendation for some students with less outstanding abilities (often self-deprecatingly referred to as rats) during the process of <a href="https://baike.baidu.com/item/%E6%8E%A8%E8%8D%90%E5%85%8D%E8%AF%95%E7%A0%94%E7%A9%B6%E7%94%9F/7548691?fr=ge_ala">recommending exemption from entrance examination for pursuing a graduate degree.</a>
-            </p>
-<!--            <a href="https://imgse.com/i/pAWKMZD"><img src="https://s21.ax1x.com/2024/11/19/pAWKMZD.jpg" alt="pAWKMZD.jpg" border="0" /></a>-->
+            <div class="dashed-div-first">
+                <h3>
+                    <a href="https://github.com/lzz335/easy-get_arxiv-paper">Easy-Arxiv</a>
+                </h3>
+            </div>
+            <div class="end-div">
+                <p>
+                    This open-source project provides a quick way to obtain arxiv documents.
+                </p>
+                <p>
+                    Here is an example:
+                </p>
+                <div style="text-align: center;">
+                    <a href="https://imgse.com/i/pAfvi6I"><img src="https://s21.ax1x.com/2024/11/23/pAfvi6I.md.png" alt="pAfvi6I.png"/></a>            <p>
+                </div>
+            </div>
+            <div class="dashed-div">
+                    <h3>
+                        <a href="https://github.com/low-rank-mice">
+                            "Mouse" Community Group
+                        </a>
+                    </h3>
+            </div>
+            <div class="dashed-div-fin">
+                <p>
+                    I organized and maintained the "Mouse" community group, which provides support to students who are not particularly outstanding (often self-deprecatingly referred to as "mice") when they are in the process of <a href="https://baike.baidu.com/item/%E6%8E%A8%E8%8D%90%E5%85%8D%E8%AF%95%E7%A0%94%E7%A9%B6%E7%94%9F/7548691?fr=ge_ala">recommending exemption from entrance examination for pursuing a graduate degree.</a>
+                </p>
+                <p>
+                    During my studies, I also went through a similar period, and interacting with them greatly alleviated my anxiety. That's why I continue to maintain this community. You are welcome to join us if you have had similar experiences or are currently going through this. You can scan the QR code below to join our discussion group.
+                </p>
+                <div style="text-align: center;">
+                        <a href="https://imgse.com/i/pAfv3n0"><img src="https://s21.ax1x.com/2024/11/24/pAfv3n0.md.jpg" alt="pAfv3n0.jpg"/></a>
+                </div>
+            </div>
         </div>
     </div>
+
 </body>
 </html>
