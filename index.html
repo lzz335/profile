@@ -150,7 +150,27 @@
             margin: 0.5rem 0;
             color: #555;
         }
+        /* 技术规格样式 */
+        .tech-specs ul {
+            columns: 2;
+            list-style-type: '▹ ';
+        }
 
+        /* 免责声明样式 */
+        .disclaimer {
+            background-color: #fff3f3;
+            border-left: 4px solid #ff6b6b;
+            padding: 10px;
+            margin: 15px 0;
+        }
+
+        /* 代码块样式 */
+        pre {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+}
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -173,6 +193,7 @@
                 font-size: 1.5rem;
             }
         }
+        
     </style>
 </head>
 <body>
@@ -248,6 +269,33 @@
                         <li>Resource sharing platform</li>
                         <li>Anxiety-relief workshops</li>
                     </ul>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3><a href="https://github.com/lzz335/VV_chat">VV Chat</a></h3>
+                </div>
+                <div class="project-content">
+                    <p>Intelligent Meme Generation System - A Deep Learning-Based Text-to-Meme Platform</p>
+                
+                    <p>📌 Notes:</p>
+                    <ul>
+                        <li>Dataset must be manually downloaded from Zhihu</li>
+                        <li>Commercial use is strictly prohibited</li>
+                        <li>Output requires manual review</li>
+                    </ul>
+                
+                    <p>📸 Sample Output:</p>
+                    <img src="https://s21.ax1x.com/2025/04/07/pEcOoBq.jpg" alt="Meme Generation Example" style="max-width: 600px;">
+                    <!-- <a href="https://imgse.com/i/pEcOoBq"><img src="https://s21.ax1x.com/2025/04/07/pEcOoBq.jpg" alt="pEcOoBq.jpg" border="0" /></a> -->
+                    <div class="disclaimer">
+                        <p>🔞 Disclaimer:</p>
+                        <ul>
+                            <li>Purely academic research project</li>
+                            <li>Does not hold copyright of original dataset</li>
+                            <li>Output content does not represent developer's views</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
