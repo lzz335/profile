@@ -3,303 +3,534 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhizhao Liu - Profile</title>
+    <title>Zhizhao Liu | Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
+            /* 配色方案优化：学术蓝 + 干净的背景 */
             --primary: #2c3e50;
             --secondary: #3498db;
-            --light: #f8f9fa;
-            --border: rgba(0, 0, 0, 0.1);
+            --accent: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-muted: #64748b;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             margin: 0;
-            padding: 2rem;
-            background: #f4f6f8;
-            color: var(--primary);
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            overflow: hidden;
+        /* 布局容器 */
+        .wrapper {
+            max-width: 1100px;
+            margin: 3rem auto;
             display: grid;
             grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            padding: 0 1.5rem;
         }
 
-        .left {
-            padding: 2rem;
-            background: var(--primary);
-            color: white;
+        /* 左侧个人信息栏 */
+        .sidebar {
             text-align: center;
+            position: sticky;
+            top: 3rem;
+            height: fit-content;
         }
 
-        .left img {
-            width: 160px;
-            height: 160px;
+        .profile-card {
+            background: var(--card-bg);
+            padding: 2.5rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 1.5rem;
-            border: 4px solid white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 4px solid #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
         }
 
-        .left h2 {
-            margin: 1rem 0;
+        .avatar:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .sidebar h1 {
             font-size: 1.5rem;
-            color: white;
+            margin: 0.5rem 0;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        .left p {
-            margin: 0.8rem 0;
+        .sidebar .role {
             font-size: 0.95rem;
-            text-align: left;
-            padding-left: 1rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
-        .left a {
-            color: rgba(255, 255, 255, 0.9);
+        .sidebar .location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* 社交链接 */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .social-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: all 0.2s ease;
         }
 
-        .left a:hover {
+        .social-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 右侧主要内容 */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* 章节通用样式 */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            margin: 0;
+            color: var(--primary);
+            font-weight: 700;
+            position: relative;
+            padding-left: 1rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        /* 个人简介文本 */
+        .bio-text p {
+            margin-bottom: 1rem;
+            color: #4b5563;
+        }
+
+        /* 论文卡片样式 */
+        .paper-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+
+        .paper-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .paper-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .paper-title:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+        }
+
+        .paper-authors {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .paper-authors strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .paper-venue {
+            font-size: 0.85rem;
+            color: #555;
+            font-style: italic;
+            margin-top: 0.2rem;
+        }
+
+        .paper-abstract {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* 论文中的图片容器 */
+        .paper-img-container {
+            width: 100%;
+            margin-top: 0.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        
+        .paper-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 标签与按钮 */
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-conf { background: #e0f2fe; color: #0284c7; }
+        .tag-rank { background: #ffedd5; color: #ea580c; }
+        .tag-new { background: #ffe4e6; color: #e11d48; }
+
+        .btn-group {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-outline {
+            border-color: #cbd5e1;
+            color: #475569;
+            background: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--secondary);
             color: var(--secondary);
         }
 
-        .right {
-            padding: 2rem;
+        .btn-solid {
+            background: var(--primary);
+            color: white;
         }
 
-        .section {
-            margin-bottom: 2.5rem;
+        .btn-solid:hover {
+            background: #1e293b;
+            transform: translateY(-1px);
         }
 
-        h2.section-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--secondary);
-            display: inline-block;
+        /* 项目网格 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
         }
 
         .project-card {
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
         }
 
         .project-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .project-header {
-            padding: 1.2rem;
-            background: var(--light);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .project-header h3 {
-            margin: 0;
-            font-size: 1.2rem;
-        }
-
-        .project-header a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .project-header a:hover {
-            color: var(--secondary);
-        }
-
-        .project-content {
-            padding: 1.5rem;
-            background: white;
-        }
-
-        .project-content p {
-            margin: 0.8rem 0;
-            color: #555;
-            font-size: 1rem;
-        }
-
-        .project-content img {
-            max-width: 100%;
+        .project-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
             border-radius: 6px;
             margin: 1rem 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f1f5f9;
         }
 
-        ul {
-            padding-left: 1.5rem;
-            margin: 1rem 0;
-        }
-
-        ul li {
-            margin: 0.5rem 0;
-            color: #555;
-        }
-        /* 技术规格样式 */
-        .tech-specs ul {
-            columns: 2;
-            list-style-type: '▹ ';
-        }
-
-        /* 免责声明样式 */
-        .disclaimer {
-            background-color: #fff3f3;
-            border-left: 4px solid #ff6b6b;
-            padding: 10px;
-            margin: 15px 0;
-        }
-
-        /* 代码块样式 */
-        pre {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 6px;
-            overflow-x: auto;
-}
+        /* 响应式 */
         @media (max-width: 768px) {
-            .container {
+            .wrapper {
                 grid-template-columns: 1fr;
+                margin: 1.5rem auto;
+                gap: 2rem;
             }
-
-            .left {
-                padding: 1.5rem;
+            .sidebar {
+                position: static;
+                text-align: center;
             }
-
-            .left img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .right {
-                padding: 1.5rem;
-            }
-
-            h2.section-title {
-                font-size: 1.5rem;
+            .paper-header {
+                flex-direction: column;
             }
         }
-        
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="left">
-        <img src="https://s21.ax1x.com/2024/11/18/pARhMAf.png" alt="Profile Photo">
-        <h2>Zhizhao Liu</h2>
-        <p>🏫 NUDT</p>
-        <p>📧 <a href="mailto:liuzhizhao@nudt.edu.cn">liuzhizhao@nudt.edu.cn</a></p>
-        <p>🐱 <a href="https://github.com/lzz335" target="_blank">github.com/lzz335</a></p>
-        <p>📚 <a href="https://scholar.google.com" target="_blank">Google Scholar</a></p>
-        <p>🎂 21</p>
-    </div>
-    <div class="right">
-        <div class="section">
-            <h2 class="section-title">Profile</h2>
-            <p class="project-content">
-                I'm Zhizhao Liu, holding a bachelor's degree in engineering from Northeastern University, currently pursuing a PhD in Computer Science and Technology at the University of National Defense Technology (NUDT).
-            </p>
-            <p class="project-content">
-                My research focuses on natural language processing, particularly in text generation and hallucination problems. I also possess cross-disciplinary experience in mechanical engineering and computational mathematics.
-            </p>
-            <p class="project-content">
-                📬 Feel free to contact me via email for collaboration or discussion!
-            </p>
-        </div>
-        <div class="section">
-            <h2 class="section-title">Papers</h2>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <h3><a href="https://openreview.net/forum?id=3UeAN1zicJ#discussion">Scenario-independent Uncertainty Estimation for LLM-based Question Answering via Factor Analysis</a></h3>
-                </div>
-                <div class="project-content">
-                    <p>WWW (CCF A) accepted paper proposing a novel plug-and-play framework for enhanced uncertainty estimation in LLM-based QA systems.</p>
+<div class="wrapper">
+    <aside class="sidebar">
+        <div class="profile-card">
+            <img src="https://s21.ax1x.com/2024/11/18/pARhMAf.png" alt="Zhizhao Liu" class="avatar">
+            <h1>Zhizhao Liu</h1>
+            <div class="role">PhD Student @ NUDT</div>
+            <div class="location">
+                <i class="fas fa-map-marker-alt" style="color:#e74c3c;"></i> Changsha, China
+            </div>
+            
+            <div style="font-size: 0.9rem; color: #64748b; margin-top: 1rem;">
+                Focusing on NLP, Text Generation & Hallucination
+            </div>
 
-                    <a href="https://imgse.com/i/pEZZWy6"><img src="https://s21.ax1x.com/2025/02/01/pEZZWy6.png" alt="pEZZWy6.png" border="0" /></a>
-                    <p><strong>Key Contributions:</strong></p>
-                    <ul>
-                        <li>Developed scenario-specific sampling for semantic-preserving query paraphrasing</li>
-                        <li>Designed factor analysis model to disentangle uncertainty factors</li>
-                        <li>Achieved 4.3-16.8% AUROC improvement over baselines</li>
-                        <li>Requires no additional training or model modifications</li>
-                    </ul>
-                </div>
+            <div class="social-links">
+                <a href="mailto:liuzhizhao@nudt.edu.cn" class="social-btn" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://github.com/lzz335" target="_blank" class="social-btn" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://scholar.google.com" target="_blank" class="social-btn" title="Google Scholar">
+                    <i class="fas fa-graduation-cap"></i>
+                </a>
             </div>
         </div>
-        <div class="section">
-            <h2 class="section-title">Projects</h2>
+    </aside>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <h3><a href="https://github.com/lzz335/easy-get_arxiv-paper">Easy-Arxiv</a></h3>
-                </div>
-                <div class="project-content">
-                    <p>An open-source tool for efficient retrieval of arXiv documents.</p>
-                    <p>Example usage:</p>
-                    <img src="https://s21.ax1x.com/2024/11/23/pAfvi6I.md.png" alt="Easy-Arxiv Example">
-                </div>
+    <main class="main-content">
+        
+        <section>
+            <div class="section-header">
+                <h2>Profile</h2>
+            </div>
+            <div class="bio-text">
+                <p>
+                    I'm <strong>Zhizhao Liu</strong>, currently pursuing a PhD in Computer Science and Technology at the National University of Defense Technology (NUDT). I received my Bachelor's degree from Northeastern University.
+                </p>
+                <p>
+                    My research interests primarily lie in <strong>Natural Language Processing</strong>, with a special focus on Retrieval-Augmented Generation (RAG), text generation, and hallucination mitigation. I combine insights from my cross-disciplinary background in mechanical engineering and computational mathematics to approach problems from unique angles.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>Selected Papers</h2>
             </div>
 
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h3><a href="https://github.com/low-rank-mice">"Mouse" Community</a></h3>
-                </div>
-                <div class="project-content">
-                    <p>This open community serves undergraduate students preparing for recommendation-based exemption (推免) to pursue postgraduate degrees in computer science or electronics-related fields, providing free assistance for issues encountered during the recommendation exemption process.</p>
-                    <p>Join us on QQ: 626333094</p>
-                    <p>💡 Community features:</p>
-                    <ul>
-                        <li>Peer mentoring program</li>
-                        <li>Resource sharing platform</li>
-                        <li>Anxiety-relief workshops</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-header">
-                    <h3><a href="https://github.com/lzz335/VV_chat">VV Chat</a></h3>
-                </div>
-                <div class="project-content">
-                    <p>Intelligent Meme Generation System - A Deep Learning-Based Text-to-Meme Platform</p>
-                
-                    <p>📌 Notes:</p>
-                    <ul>
-                        <li>Dataset must be manually downloaded from Zhihu</li>
-                        <li>Commercial use is strictly prohibited</li>
-                        <li>Output requires manual review</li>
-                    </ul>
-                
-                    <p>📸 Sample Output:</p>
-                    <img src="https://s21.ax1x.com/2025/04/07/pEcOoBq.jpg" alt="Meme Generation Example" style="max-width: 600px;">
-                    <!-- <a href="https://imgse.com/i/pEcOoBq"><img src="https://s21.ax1x.com/2025/04/07/pEcOoBq.jpg" alt="pEcOoBq.jpg" border="0" /></a> -->
-                    <div class="disclaimer">
-                        <p>🔞 Disclaimer:</p>
-                        <ul>
-                            <li>Purely academic research project</li>
-                            <li>Does not hold copyright of original dataset</li>
-                            <li>Output content does not represent developer's views</li>
-                        </ul>
+            <article class="paper-card">
+                <div class="paper-header">
+                    <div>
+                        <div class="tags" style="margin-bottom:0.5rem;">
+                            <span class="tag tag-new">New</span>
+                            <span class="tag tag-conf">WWW 2026</span>
+                            <span class="tag tag-rank">CCF A</span>
+                        </div>
+                        <a href="https://doi.org/10.1145/3774904.3792085" class="paper-title">
+                            Rethinking the Hidden Risk of Reranking: Achieving Risk-aware Reranking with Information Gain for RAG with LLMs
+                        </a>
                     </div>
                 </div>
+                
+                <div class="paper-authors">
+                    <strong>Zhizhao Liu</strong>, Zhihua Wen, <strong>Zhiliang Tian*</strong>, Zhen Huang, Miaorong Zhu, Zimian Wei, Yifu Gao, Liang Ding, <strong>Dongsheng Li*</strong>
+                </div>
+                <div class="paper-venue">
+                    Accepted by The Web Conference 2026 (WWW '26), Dubai, UAE. (AI Search Track)
+                </div>
+
+                <div class="paper-abstract">
+                    <p style="margin:0;">
+                        <strong>Core Finding:</strong> We reveal a counter-intuitive phenomenon where rerankers, while improving ground-truth recall, significantly increase the proportion of "Harmful Documents"—misleading content sharing superficial shortcuts (like high-frequency entities) with the query. 
+                        <br><br>
+                        <strong>Method:</strong> We propose a risk-aware reranking method utilizing Information Gain. By balancing the potential benefit against the risk of retrieved documents (akin to hard negative mining), our approach effectively suppresses harmful noise while maintaining performance.
+                    </p>
+                </div>
+
+                <div class="paper-img-container">
+                    <img src="https://s41.ax1x.com/2026/01/26/pZR9gUS.png" alt="Reranking Risk Analysis" onerror="this.src='https://imgchr.com/i/pZR9gUS';"> 
+                    </div>
+
+                <div class="btn-group">
+                    <a href="https://doi.org/10.1145/3774904.3792085" class="btn-sm btn-solid">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </a>
+                    <a href="https://github.com/lzz335/hidden_risk_of_reranking" class="btn-sm btn-outline">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
+            </article>
+
+            <article class="paper-card">
+                <div class="paper-header">
+                    <div>
+                        <div class="tags" style="margin-bottom:0.5rem;">
+                            <span class="tag tag-conf">WWW 2025</span>
+                            <span class="tag tag-rank">CCF A</span>
+                        </div>
+                        <a href="https://openreview.net/forum?id=3UeAN1zicJ#discussion" class="paper-title">
+                            Scenario-independent Uncertainty Estimation for LLM-based Question Answering via Factor Analysis
+                        </a>
+                    </div>
+                </div>
+                <div class="paper-venue">
+                    Proceedings of the ACM Web Conference 2025 (WWW '25), Sydney, Australia.
+                </div>
+
+                <div style="display: flex; gap: 1.5rem; margin-top: 1rem; align-items: flex-start; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 240px;">
+                        <p style="font-size: 0.9rem; color: #555; margin: 0;">
+                            A novel plug-and-play framework for enhanced uncertainty estimation in LLM-based QA systems. We introduced scenario-specific sampling and factor analysis models to disentangle uncertainty factors without requiring model retraining.
+                        </p>
+                        <div class="btn-group" style="margin-top: 1rem;">
+                            <a href="https://openreview.net/forum?id=3UeAN1zicJ#discussion" class="btn-sm btn-outline">
+                                <i class="fas fa-external-link-alt"></i> Paper
+                            </a>
+                        </div>
+                    </div>
+                    <div style="width: 180px; flex-shrink: 0;">
+                        <img src="https://s21.ax1x.com/2025/02/01/pEZZWy6.png" alt="Framework Overview" style="width: 100%; border-radius: 6px; border:1px solid #eee;">
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>Projects</h2>
             </div>
-        </div>
-    </div>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3 style="margin:0 0 0.5rem 0; font-size:1.1rem;">
+                        <a href="https://github.com/lzz335/easy-get_arxiv-paper" style="color:var(--primary); text-decoration:none;">Easy-Arxiv</a>
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: auto;">
+                        An open-source tool for efficient retrieval and management of arXiv documents.
+                    </p>
+                    <img src="https://s21.ax1x.com/2024/11/23/pAfvi6I.md.png" class="project-img" alt="Easy-Arxiv">
+                    <a href="https://github.com/lzz335/easy-get_arxiv-paper" class="btn-sm btn-outline" style="justify-content:center;">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3 style="margin:0 0 0.5rem 0; font-size:1.1rem;">
+                        <a href="https://github.com/low-rank-mice" style="color:var(--primary); text-decoration:none;">"Mouse" Community</a>
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: auto;">
+                        Undergraduate recommendation exemption (推免) community for CS/EE students.
+                    </p>
+                    <div style="margin: 1rem 0; font-size: 0.8rem; color: #888;">
+                        <i class="fas fa-users"></i> Mentoring & Resources
+                    </div>
+                    <a href="https://github.com/low-rank-mice" class="btn-sm btn-outline" style="justify-content:center;">
+                        <i class="fab fa-qq"></i> Join: 626333094
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3 style="margin:0 0 0.5rem 0; font-size:1.1rem;">
+                        <a href="https://github.com/lzz335/VV_chat" style="color:var(--primary); text-decoration:none;">VV Chat</a>
+                    </h3>
+                    <p style="font-size: 0.85rem; color: #666;">
+                        Deep Learning-Based Text-to-Meme Generation System.
+                    </p>
+                    <img src="https://s21.ax1x.com/2025/04/07/pEcOoBq.jpg" class="project-img" style="object-fit: contain; background:#f8f9fa;" alt="Meme Example">
+                    <div style="background:#fff1f2; color:#e11d48; padding:0.5rem; border-radius:4px; font-size:0.75rem; margin-bottom:1rem;">
+                        <strong>⚠️ Academic Research Only</strong>
+                    </div>
+                    <a href="https://github.com/lzz335/VV_chat" class="btn-sm btn-outline" style="justify-content:center;">
+                        <i class="fab fa-github"></i> View Project
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
 </div>
+
 </body>
 </html>
