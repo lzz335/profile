@@ -1,536 +1,1760 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en" data-lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhizhao Liu | Researcher</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            /* 配色方案优化：学术蓝 + 干净的背景 */
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-main: #2c3e50;
-            --text-muted: #64748b;
-            --border-radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhizhao Liu | Researcher</title>
+<meta name="description" content="Zhizhao Liu — PhD student at NUDT working on natural language processing, retrieval-augmented generation, text generation and hallucination mitigation.">
+<meta name="author" content="Zhizhao Liu">
+<meta property="og:title" content="Zhizhao Liu | Researcher">
+<meta property="og:description" content="PhD student at NUDT. NLP, RAG, text generation and hallucination mitigation.">
+<meta property="og:type" content="website">
 
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%232563eb'/%3E%3Ctext x='50' y='69' font-family='Arial, Helvetica, sans-serif' font-size='56' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
 
-        /* 布局容器 */
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+    /* ============================================================
+       Design tokens
+       ============================================================ */
+    :root {
+        color-scheme: light;
+
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --surface-2: #f8fafc;
+        --surface-3: #eef2f8;
+
+        --text: #0f172a;
+        --text-2: #334155;
+        --muted: #64748b;
+
+        --line: rgba(15, 23, 42, .08);
+        --line-strong: rgba(15, 23, 42, .14);
+
+        --brand: #2563eb;
+        --brand-2: #6d4aff;
+        --brand-soft: rgba(37, 99, 235, .10);
+
+        --gold: #b45309;
+        --gold-bg: rgba(245, 158, 11, .10);
+        --gold-line: rgba(217, 119, 6, .26);
+
+        --glow-1: rgba(37, 99, 235, .10);
+        --glow-2: rgba(245, 158, 11, .09);
+        --dot: rgba(15, 23, 42, .055);
+
+        --btn-fg: #ffffff;
+
+        --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 12px 32px -20px rgba(15, 23, 42, .45);
+        --shadow-lg: 0 24px 52px -28px rgba(15, 23, 42, .55);
+
+        --tag-conf-bg: #e7efff; --tag-conf-fg: #1d4ed8;
+        --tag-rank-bg: #fff3e3; --tag-rank-fg: #b45309;
+        --tag-new-bg: #ffe8ee;  --tag-new-fg: #be123c;
+        --tag-honor-bg: #fff4d6; --tag-honor-fg: #9a5b04;
+
+        --radius-lg: 20px;
+        --radius-md: 16px;
+        --radius-sm: 12px;
+    }
+
+    [data-theme="dark"] {
+        color-scheme: dark;
+
+        --bg: #0a0f1c;
+        --surface: #101828;
+        --surface-2: #0c1424;
+        --surface-3: #16203a;
+
+        --text: #e8eef9;
+        --text-2: #c2cee0;
+        --muted: #8b9bb4;
+
+        --line: rgba(255, 255, 255, .09);
+        --line-strong: rgba(255, 255, 255, .16);
+
+        --brand: #7db1ff;
+        --brand-2: #b39dff;
+        --brand-soft: rgba(125, 177, 255, .14);
+
+        --gold: #f7c56b;
+        --gold-bg: rgba(251, 191, 36, .09);
+        --gold-line: rgba(251, 191, 36, .26);
+
+        --glow-1: rgba(37, 99, 235, .22);
+        --glow-2: rgba(245, 158, 11, .12);
+        --dot: rgba(255, 255, 255, .05);
+
+        --btn-fg: #08111f;
+
+        --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 14px 34px -20px rgba(0, 0, 0, .8);
+        --shadow-lg: 0 28px 60px -30px rgba(0, 0, 0, .9);
+
+        --tag-conf-bg: rgba(96, 165, 250, .16); --tag-conf-fg: #93c5fd;
+        --tag-rank-bg: rgba(251, 191, 36, .14); --tag-rank-fg: #fcd34d;
+        --tag-new-bg: rgba(244, 63, 94, .16);  --tag-new-fg: #fda4af;
+        --tag-honor-bg: rgba(251, 191, 36, .16); --tag-honor-fg: #fcd34d;
+    }
+
+    /* ============================================================
+       Base
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Inter', 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--text);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition: background-color .3s ease, color .3s ease;
+    }
+
+    ::selection {
+        background: var(--brand-soft);
+        color: var(--text);
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible,
+    button:focus-visible {
+        outline: 2px solid var(--brand);
+        outline-offset: 3px;
+        border-radius: 6px;
+    }
+
+    img { max-width: 100%; }
+
+    /* Soft ambient background */
+    .bg-decor {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+            radial-gradient(58rem 38rem at 6% -12%, var(--glow-1), transparent 62%),
+            radial-gradient(48rem 34rem at 100% -6%, var(--glow-2), transparent 58%);
+        transition: background .3s ease;
+    }
+
+    .bg-decor::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+        background-size: 24px 24px;
+        -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 10%, transparent 75%);
+                mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 10%, transparent 75%);
+    }
+
+    /* ============================================================
+       Layout
+       ============================================================ */
+    .wrapper {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 3.25rem 1.5rem 4rem;
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 2.75rem;
+        align-items: start;
+    }
+
+    /* ============================================================
+       Sidebar
+       ============================================================ */
+    .sidebar {
+        position: sticky;
+        top: 2rem;
+        align-self: start;
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--line-strong) transparent;
+        padding-bottom: 2px;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 6px; }
+    .sidebar::-webkit-scrollbar-thumb {
+        background: var(--line-strong);
+        border-radius: 99px;
+    }
+
+    .profile-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 1.35rem 1.4rem 1.4rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        transition: background-color .3s ease, border-color .3s ease;
+    }
+
+    .card-tools {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: .4rem;
+        margin-bottom: .95rem;
+    }
+
+    .lang-switch {
+        display: inline-flex;
+        align-items: stretch;
+        height: 32px;
+        padding: 2px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--surface-2);
+    }
+
+    .lang-btn {
+        appearance: none;
+        border: 0;
+        display: grid;
+        place-items: center;
+        padding: 0 .55rem;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        font-family: inherit;
+        font-size: .64rem;
+        font-weight: 700;
+        letter-spacing: .04em;
+        line-height: 1;
+        cursor: pointer;
+        transition: background-color .2s ease, color .2s ease;
+    }
+
+    .lang-btn:hover { color: var(--brand); }
+
+    .lang-btn[aria-pressed="true"] {
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: var(--btn-fg);
+        box-shadow: 0 4px 12px -8px rgba(37, 99, 235, .95);
+    }
+
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: var(--surface-2);
+        color: var(--muted);
+        font-size: .8rem;
+        cursor: pointer;
+        transition: color .2s ease, background-color .2s ease, transform .2s ease;
+    }
+
+    .theme-toggle:hover {
+        color: var(--brand);
+        background: var(--brand-soft);
+        transform: rotate(-12deg);
+    }
+
+    .avatar-wrap {
+        width: 136px;
+        height: 136px;
+        margin: 0 auto 1.1rem;
+        padding: 3px;
+        border-radius: 50%;
+        background: conic-gradient(from 200deg, var(--brand), var(--brand-2), #f59e0b, var(--brand));
+        box-shadow: 0 16px 36px -18px rgba(37, 99, 235, .7);
+    }
+
+    .avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--surface);
+        display: block;
+        transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .avatar-wrap:hover .avatar { transform: scale(1.045); }
+
+    .sidebar h1 {
+        margin: .35rem 0 .15rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -.025em;
+        color: var(--text);
+    }
+
+    .role {
+        margin: 0;
+        font-size: .92rem;
+        font-weight: 600;
+        color: var(--brand);
+    }
+
+    .location {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .4rem;
+        margin: .45rem 0 0;
+        font-size: .82rem;
+        color: var(--muted);
+    }
+
+    .location i { color: #e74c3c; font-size: .78rem; }
+
+    .focus {
+        margin: .85rem 0 0;
+        font-size: .8rem;
+        line-height: 1.55;
+        color: var(--muted);
+    }
+
+    /* New identity badge */
+    .honor-chip {
+        display: flex;
+        align-items: flex-start;
+        gap: .6rem;
+        margin-top: 1.15rem;
+        padding: .7rem .8rem;
+        text-align: left;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--gold-line);
+        background:
+            linear-gradient(135deg, var(--gold-bg), transparent 78%),
+            var(--surface-2);
+    }
+
+    .honor-chip > i {
+        margin-top: .18rem;
+        font-size: .95rem;
+        color: var(--gold);
+    }
+
+    .honor-chip b {
+        display: block;
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .005em;
+        color: var(--text);
+        line-height: 1.35;
+    }
+
+    .honor-chip span {
+        display: block;
+        margin-top: .1rem;
+        font-size: .72rem;
+        line-height: 1.4;
+        color: var(--muted);
+    }
+
+    /* Sidebar navigation */
+    .side-nav {
+        display: flex;
+        flex-direction: column;
+        gap: .12rem;
+        margin-top: 1.25rem;
+        padding-top: 1.15rem;
+        border-top: 1px solid var(--line);
+        text-align: left;
+    }
+
+    .side-nav a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: .55rem;
+        padding: .42rem .6rem;
+        border-radius: 9px;
+        font-size: .84rem;
+        font-weight: 500;
+        color: var(--text-2);
+        text-decoration: none;
+        transition: background-color .18s ease, color .18s ease;
+    }
+
+    .side-nav a::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--line-strong);
+        transition: background-color .18s ease, transform .18s ease;
+    }
+
+    .side-nav a:hover {
+        background: var(--surface-2);
+        color: var(--brand);
+    }
+
+    .side-nav a.active {
+        color: var(--brand);
+        background: var(--brand-soft);
+    }
+
+    .side-nav a.active::before {
+        background: var(--brand);
+        transform: scale(1.35);
+    }
+
+    /* Social links */
+    .social-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: .5rem;
+        margin-top: 1.1rem;
+        padding-top: 1.1rem;
+        border-top: 1px solid var(--line);
+    }
+
+    .social-btn {
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        background: var(--surface-2);
+        color: var(--muted);
+        font-size: .95rem;
+        text-decoration: none;
+        transition: color .18s ease, background-color .18s ease, transform .18s ease, border-color .18s ease;
+    }
+
+    .social-btn:hover {
+        color: var(--brand);
+        background: var(--brand-soft);
+        border-color: var(--brand-soft);
+        border-color: color-mix(in srgb, var(--brand) 30%, transparent);
+        transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       Main content
+       ============================================================ */
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3.25rem;
+        min-width: 0;
+    }
+
+    section { scroll-margin-top: 2rem; }
+
+    .section-head {
+        display: flex;
+        align-items: flex-end;
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-head::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        margin-bottom: .55rem;
+        background: linear-gradient(90deg, var(--line-strong), transparent);
+    }
+
+    .eyebrow {
+        display: block;
+        margin-bottom: .2rem;
+        font-size: .68rem;
+        font-weight: 700;
+        letter-spacing: .17em;
+        text-transform: uppercase;
+        color: var(--brand);
+    }
+
+    .section-head h2 {
+        margin: 0;
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: -.025em;
+        color: var(--text);
+    }
+
+    /* Profile */
+    .bio-text { max-width: 68ch; }
+
+    .bio-text p {
+        margin: 0 0 .95rem;
+        font-size: .97rem;
+        color: var(--text-2);
+    }
+
+    .bio-text p:last-child { margin-bottom: 0; }
+
+    .bio-text strong {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .facts {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .55rem;
+        margin: 1.3rem 0 0;
+        padding: 0;
+    }
+
+    .facts li {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        padding: .34rem .78rem;
+        font-size: .8rem;
+        color: var(--text-2);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+    }
+
+    .facts i { font-size: .72rem; color: var(--brand); }
+    .facts b { font-weight: 700; color: var(--text); }
+
+    /* ============================================================
+       Paper cards
+       ============================================================ */
+    .paper-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: .85rem;
+        padding: 1.6rem 1.7rem;
+        margin-bottom: 1.5rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        transition: transform .28s cubic-bezier(.22, 1, .36, 1),
+                    box-shadow .28s ease,
+                    border-color .28s ease,
+                    background-color .3s ease;
+    }
+
+    .paper-card:last-child { margin-bottom: 0; }
+
+    .paper-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1.5rem;
+        bottom: 1.5rem;
+        width: 3px;
+        border-radius: 0 3px 3px 0;
+        background: linear-gradient(180deg, var(--brand), var(--brand-2));
+        opacity: 0;
+        transition: opacity .28s ease;
+    }
+
+    .paper-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+        border-color: color-mix(in srgb, var(--brand) 32%, var(--line));
+    }
+
+    .paper-card:hover::before { opacity: 1; }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+    }
+
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: .3rem;
+        padding: .22rem .62rem;
+        border-radius: 6px;
+        font-size: .67rem;
+        font-weight: 700;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .tag-conf  { background: var(--tag-conf-bg);  color: var(--tag-conf-fg); }
+    .tag-rank  { background: var(--tag-rank-bg);  color: var(--tag-rank-fg); }
+    .tag-new   { background: var(--tag-new-bg);   color: var(--tag-new-fg); }
+    .tag-honor { background: var(--tag-honor-bg); color: var(--tag-honor-fg); }
+
+    .paper-title {
+        margin: 0;
+        font-size: 1.13rem;
+        font-weight: 650;
+        line-height: 1.4;
+        letter-spacing: -.012em;
+    }
+
+    .paper-title a {
+        color: var(--text);
+        text-decoration: none;
+        background-image: linear-gradient(var(--brand), var(--brand));
+        background-size: 0 2px;
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        transition: color .2s ease, background-size .3s ease;
+    }
+
+    .paper-title a:hover {
+        color: var(--brand);
+        background-size: 100% 2px;
+    }
+
+    .paper-authors {
+        margin: 0;
+        font-size: .88rem;
+        line-height: 1.55;
+        color: var(--muted);
+    }
+
+    .paper-authors strong {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .paper-venue {
+        display: flex;
+        align-items: flex-start;
+        gap: .45rem;
+        margin: 0;
+        font-size: .84rem;
+        font-style: italic;
+        color: var(--muted);
+    }
+
+    .paper-venue i {
+        margin-top: .32rem;
+        font-size: .72rem;
+        color: var(--brand);
+        font-style: normal;
+    }
+
+    .abstract {
+        padding: .95rem 1.05rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--line);
+        background: var(--surface-2);
+        font-size: .89rem;
+        line-height: 1.65;
+        color: var(--text-2);
+    }
+
+    .abstract p { margin: 0; }
+    .abstract p + p { margin-top: .55rem; }
+
+    .abstract strong {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .paper-figure {
+        margin: .15rem 0 0;
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: var(--surface-2);
+    }
+
+    .paper-figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: transform .6s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .paper-card:hover .paper-figure img { transform: scale(1.015); }
+
+    .paper-split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 200px;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .paper-split .paper-figure { margin: 0; }
+
+    /* Buttons */
+    .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .55rem;
+        margin-top: .1rem;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .45rem;
+        padding: .46rem .95rem;
+        border-radius: 999px;
+        border: 1px solid var(--line-strong);
+        background: var(--surface);
+        color: var(--text-2);
+        font-size: .83rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all .2s ease;
+    }
+
+    .btn i { font-size: .8rem; }
+
+    .btn:hover {
+        border-color: color-mix(in srgb, var(--brand) 45%, transparent);
+        color: var(--brand);
+        background: var(--brand-soft);
+        transform: translateY(-1px);
+    }
+
+    .btn-primary {
+        border-color: transparent;
+        color: var(--btn-fg);
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 10px 22px -12px rgba(37, 99, 235, .85);
+    }
+
+    .btn-primary:hover {
+        color: var(--btn-fg);
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        filter: brightness(1.06);
+        transform: translateY(-1px);
+    }
+
+    .btn-block { width: 100%; }
+
+    /* ============================================================
+       Honors
+       ============================================================ */
+    .honor-card {
+        position: relative;
+        display: flex;
+        gap: 1.15rem;
+        align-items: flex-start;
+        padding: 1.6rem 1.7rem;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--gold-line);
+        background:
+            radial-gradient(24rem 16rem at 100% 0%, var(--gold-bg), transparent 70%),
+            linear-gradient(135deg, var(--gold-bg), transparent 55%),
+            var(--surface);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    .honor-card::after {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 190px;
+        height: 190px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--gold-bg), transparent 68%);
+        pointer-events: none;
+    }
+
+    .medal {
+        flex: none;
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        color: #fff;
+        font-size: 1.15rem;
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        box-shadow: 0 12px 26px -12px rgba(217, 119, 6, .9);
+    }
+
+    .honor-body { position: relative; z-index: 1; min-width: 0; }
+
+    .honor-top {
+        display: flex;
+        align-items: center;
+        gap: .55rem;
+        margin-bottom: .45rem;
+    }
+
+    .honor-year {
+        font-size: .74rem;
+        font-weight: 700;
+        letter-spacing: .08em;
+        color: var(--gold);
+        padding-left: .55rem;
+        border-left: 1px solid var(--gold-line);
+    }
+
+    .honor-card h3 {
+        margin: 0;
+        font-size: 1.08rem;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -.01em;
+        color: var(--text);
+    }
+
+    .honor-org {
+        margin: .3rem 0 0;
+        font-size: .82rem;
+        color: var(--gold);
+        font-weight: 500;
+    }
+
+    .honor-desc {
+        margin: .55rem 0 0;
+        font-size: .87rem;
+        line-height: 1.65;
+        color: var(--muted);
+    }
+
+    /* ============================================================
+       Software
+       ============================================================ */
+    .software-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(220px, .8fr);
+        gap: 1.75rem;
+        padding: 1.7rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        transition: box-shadow .28s ease, border-color .28s ease, background-color .3s ease;
+    }
+
+    .software-card:hover {
+        box-shadow: var(--shadow-lg);
+        border-color: color-mix(in srgb, var(--brand) 30%, var(--line));
+    }
+
+    .software-main { min-width: 0; }
+
+    .software-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: .95rem;
+    }
+
+    .app-icon {
+        flex: none;
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        color: #fff;
+        font-size: 1.1rem;
+        background: linear-gradient(135deg, #2563eb, #6d4aff);
+        box-shadow: 0 12px 26px -14px rgba(37, 99, 235, .9);
+    }
+
+    .software-head .tags { margin-bottom: .45rem; }
+
+    .software-title {
+        margin: 0;
+        font-size: 1.16rem;
+        font-weight: 700;
+        letter-spacing: -.015em;
+        line-height: 1.35;
+    }
+
+    .software-title a {
+        color: var(--text);
+        text-decoration: none;
+        transition: color .2s ease;
+    }
+
+    .software-title a:hover { color: var(--brand); }
+
+    .software-title .zh {
+        margin-left: .4rem;
+        font-size: .92rem;
+        font-weight: 500;
+        color: var(--muted);
+    }
+
+    .software-sub {
+        margin: .32rem 0 0;
+        font-size: .82rem;
+        color: var(--muted);
+    }
+
+    .software-desc {
+        margin: 0 0 .95rem;
+        font-size: .9rem;
+        line-height: 1.68;
+        color: var(--text-2);
+    }
+
+    .software-desc strong {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .software-points {
+        list-style: none;
+        display: grid;
+        gap: .5rem;
+        margin: 0 0 1.15rem;
+        padding: 0;
+    }
+
+    .software-points li {
+        position: relative;
+        padding-left: 1.1rem;
+        font-size: .865rem;
+        line-height: 1.62;
+        color: var(--text-2);
+    }
+
+    .software-points li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: .62rem;
+        width: 5px;
+        height: 5px;
+        border-radius: 1px;
+        background: var(--brand);
+        transform: rotate(45deg);
+    }
+
+    .software-points strong { color: var(--text); font-weight: 600; }
+
+    .software-points code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: .82em;
+        padding: .08rem .3rem;
+        border-radius: 4px;
+        background: var(--surface-3);
+        color: var(--text);
+        white-space: nowrap;
+    }
+
+    .spec {
+        align-self: start;
+        padding: 1.05rem 1.1rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--line);
+        background: var(--surface-2);
+    }
+
+    .spec dl { margin: 0; display: grid; gap: .75rem; }
+
+    .spec dt {
+        font-size: .6rem;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    .spec dd {
+        margin: .12rem 0 0;
+        font-size: .8rem;
+        line-height: 1.5;
+        color: var(--text-2);
+    }
+
+    /* ============================================================
+       Projects
+       ============================================================ */
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 1.25rem;
+    }
+
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        padding: 1.35rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        transition: transform .28s cubic-bezier(.22, 1, .36, 1),
+                    box-shadow .28s ease,
+                    border-color .28s ease,
+                    background-color .3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: color-mix(in srgb, var(--brand) 32%, var(--line));
+    }
+
+    .project-card h3 {
+        margin: 0 0 .35rem;
+        font-size: 1.02rem;
+        font-weight: 700;
+        letter-spacing: -.01em;
+    }
+
+    .project-card h3 a {
+        color: var(--text);
+        text-decoration: none;
+        transition: color .2s ease;
+    }
+
+    .project-card h3 a:hover { color: var(--brand); }
+
+    .project-desc {
+        margin: 0 0 .9rem;
+        font-size: .84rem;
+        line-height: 1.6;
+        color: var(--muted);
+        flex: 1;
+    }
+
+    .project-thumb {
+        height: 148px;
+        margin-bottom: 1rem;
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: var(--surface-2);
+    }
+
+    .project-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .project-thumb.contain img {
+        object-fit: contain;
+        padding: .6rem;
+    }
+
+    .project-card:hover .project-thumb img { transform: scale(1.035); }
+
+    .project-visual {
+        display: grid;
+        place-items: center;
+        gap: .3rem;
+        height: 148px;
+        margin-bottom: 1rem;
+        border-radius: var(--radius-sm);
+        border: 1px dashed var(--line-strong);
+        background:
+            radial-gradient(12rem 8rem at 50% 0%, var(--brand-soft), transparent 70%),
+            var(--surface-2);
+        color: var(--brand);
+        text-align: center;
+    }
+
+    .project-visual i { font-size: 1.5rem; }
+
+    .project-visual span {
+        font-size: .68rem;
+        font-weight: 600;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    .notice {
+        margin: 0 0 1rem;
+        padding: .42rem .6rem;
+        border-radius: 7px;
+        background: var(--tag-new-bg);
+        color: var(--tag-new-fg);
+        font-size: .72rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+        margin-top: .5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: .5rem;
+        font-size: .78rem;
+        color: var(--muted);
+    }
+
+    .footer a {
+        color: var(--text-2);
+        text-decoration: none;
+        border-bottom: 1px solid var(--line-strong);
+        padding-bottom: 1px;
+        transition: color .2s ease, border-color .2s ease;
+    }
+
+    .footer a:hover { color: var(--brand); border-color: var(--brand); }
+
+    /* ============================================================
+       Language
+       ============================================================ */
+    [data-lang="zh"] .sidebar h1,
+    [data-lang="zh"] .section-head h2 { letter-spacing: 0; }
+
+    [data-lang="zh"] .eyebrow { letter-spacing: .12em; }
+
+    [data-lang="zh"] .software-title .zh { display: none; }
+
+    [data-lang="zh"] .bio-text p,
+    [data-lang="zh"] .abstract,
+    [data-lang="zh"] .software-desc,
+    [data-lang="zh"] .software-points li,
+    [data-lang="zh"] .honor-desc { line-height: 1.85; }
+
+    /* ============================================================
+       Motion
+       ============================================================ */
+    .js .reveal {
+        opacity: 0;
+        translate: 0 16px;
+        transition: opacity .65s ease, translate .65s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .js .reveal.in {
+        opacity: 1;
+        translate: 0 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .js .reveal { opacity: 1; translate: 0 0; transition: none; }
+        *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    }
+
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 960px) {
         .wrapper {
-            max-width: 1100px;
-            margin: 3rem auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 3rem;
-            padding: 0 1.5rem;
-        }
-
-        /* 左侧个人信息栏 */
-        .sidebar {
-            text-align: center;
-            position: sticky;
-            top: 3rem;
-            height: fit-content;
-        }
-
-        .profile-card {
-            background: var(--card-bg);
-            padding: 2.5rem 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .avatar:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-
-        .sidebar h1 {
-            font-size: 1.5rem;
-            margin: 0.5rem 0;
-            color: var(--primary);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .sidebar .role {
-            font-size: 0.95rem;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .sidebar .location {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        /* 社交链接 */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #eee;
-        }
-
-        .social-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .social-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* 右侧主要内容 */
-        .main-content {
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: minmax(0, 1fr);
             gap: 2.5rem;
+            padding: 2rem 1.25rem 3rem;
         }
 
-        /* 章节通用样式 */
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
+        .sidebar {
+            position: static;
+            max-height: none;
+            overflow: visible;
         }
 
-        .section-header h2 {
-            font-size: 1.4rem;
-            margin: 0;
-            color: var(--primary);
-            font-weight: 700;
-            position: relative;
-            padding-left: 1rem;
-            border-left: 4px solid var(--secondary);
-        }
+        .profile-card { padding: 2rem 1.5rem 1.35rem; }
 
-        /* 个人简介文本 */
-        .bio-text p {
-            margin-bottom: 1rem;
-            color: #4b5563;
-        }
-
-        /* 论文卡片样式 */
-        .paper-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 1.5rem;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(0,0,0,0.02);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .paper-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(52, 152, 219, 0.3);
-        }
-
-        .paper-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .paper-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            line-height: 1.4;
-            flex: 1;
-        }
-
-        .paper-title:hover {
-            color: var(--secondary);
-            text-decoration: underline;
-            text-decoration-thickness: 2px;
-        }
-
-        .paper-authors {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .paper-authors strong {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .paper-venue {
-            font-size: 0.85rem;
-            color: #555;
-            font-style: italic;
-            margin-top: 0.2rem;
-        }
-
-        .paper-abstract {
-            background: #f8fafc;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: #475569;
-            line-height: 1.6;
-        }
-
-        /* 论文中的图片容器 */
-        .paper-img-container {
-            width: 100%;
-            margin-top: 0.5rem;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #eee;
-        }
-        
-        .paper-img-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* 标签与按钮 */
-        .tags {
-            display: flex;
-            gap: 0.5rem;
+        .side-nav {
+            flex-direction: row;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: .25rem;
         }
 
-        .tag {
-            font-size: 0.7rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .side-nav a { padding: .35rem .7rem; }
+        .side-nav a::before { display: none; }
+    }
 
-        .tag-conf { background: #e0f2fe; color: #0284c7; }
-        .tag-rank { background: #ffedd5; color: #ea580c; }
-        .tag-new { background: #ffe4e6; color: #e11d48; }
+    @media (max-width: 860px) {
+        .software-card { grid-template-columns: minmax(0, 1fr); gap: 1.35rem; }
+    }
 
-        .btn-group {
-            display: flex;
-            gap: 0.8rem;
-            margin-top: 0.5rem;
-        }
+    @media (max-width: 720px) {
+        .paper-split { grid-template-columns: minmax(0, 1fr); }
+        .paper-split .paper-figure { max-width: 320px; }
+        .paper-card { padding: 1.35rem 1.25rem; }
+        .honor-card { padding: 1.35rem 1.25rem; }
+        .section-head h2 { font-size: 1.3rem; }
+    }
 
-        .btn-sm {
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .btn-outline {
-            border-color: #cbd5e1;
-            color: #475569;
-            background: white;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-
-        .btn-solid {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-solid:hover {
-            background: #1e293b;
-            transform: translateY(-1px);
-        }
-
-        /* 项目网格 */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.02);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .project-img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin: 1rem 0;
-            border: 1px solid #f1f5f9;
-        }
-
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .wrapper {
-                grid-template-columns: 1fr;
-                margin: 1.5rem auto;
-                gap: 2rem;
-            }
-            .sidebar {
-                position: static;
-                text-align: center;
-            }
-            .paper-header {
-                flex-direction: column;
-            }
-        }
-    </style>
+    @media (max-width: 480px) {
+        .avatar-wrap { width: 118px; height: 118px; }
+        .bio-text p { font-size: .93rem; }
+        .paper-title { font-size: 1.05rem; }
+        .honor-card { flex-direction: column; }
+        .medal { width: 42px; height: 42px; }
+        .facts li { font-size: .76rem; }
+    }
+</style>
 </head>
 <body>
 
+<div class="bg-decor" aria-hidden="true"></div>
+
 <div class="wrapper">
+    <!-- ================= Sidebar ================= -->
     <aside class="sidebar">
         <div class="profile-card">
-            <img src="https://s21.ax1x.com/2024/11/18/pARhMAf.png" alt="Zhizhao Liu" class="avatar">
-            <h1>Zhizhao Liu</h1>
-            <div class="role">PhD Student @ NUDT</div>
-            <div class="location">
-                <i class="fas fa-map-marker-alt" style="color:#e74c3c;"></i> Changsha, China
-            </div>
-            
-            <div style="font-size: 0.9rem; color: #64748b; margin-top: 1rem;">
-                Focusing on NLP, Text Generation & Hallucination
+            <div class="card-tools">
+                <div class="lang-switch" role="group" aria-label="Language / 语言">
+                    <button class="lang-btn" type="button" data-lang-set="en" aria-pressed="true">EN</button>
+                    <button class="lang-btn" type="button" data-lang-set="zh" aria-pressed="false" lang="zh-CN">中</button>
+                </div>
+
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
             </div>
 
+            <div class="avatar-wrap">
+                <img src="https://s21.ax1x.com/2024/11/18/pARhMAf.png" alt="Portrait of Zhizhao Liu" class="avatar" width="136" height="136">
+            </div>
+
+            <h1 data-zh="刘志钊">Zhizhao Liu</h1>
+            <p class="role" data-zh="国防科技大学 · 博士研究生">PhD Student @ NUDT</p>
+            <p class="location">
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                <span data-zh="中国 · 长沙">Changsha, China</span>
+            </p>
+            <p class="focus" data-zh="自然语言处理 · 文本生成 · 幻觉缓解">NLP · Text Generation · Hallucination Mitigation</p>
+
+            <!-- New identity -->
+            <div class="honor-chip">
+                <i class="fas fa-award" aria-hidden="true"></i>
+                <div>
+                    <b data-zh="2026 中国科协青年科技人才培育工程">2026 CAST Talent Program</b>
+                    <span lang="zh-CN" data-zh="博士生项目">中国科协青年科技人才培育工程（博士生项目）</span>
+                </div>
+            </div>
+
+            <nav class="side-nav" aria-label="Section navigation" data-zh-label="章节导航">
+                <a href="#about" data-zh="关于">About</a>
+                <a href="#papers" data-zh="论文">Publications</a>
+                <a href="#honors" data-zh="荣誉">Honors</a>
+                <a href="#software" data-zh="软件">Software</a>
+                <a href="#projects" data-zh="项目">Projects</a>
+            </nav>
+
             <div class="social-links">
-                <a href="mailto:liuzhizhao@nudt.edu.cn" class="social-btn" title="Email">
-                    <i class="fas fa-envelope"></i>
+                <a href="mailto:liuzhizhao@nudt.edu.cn" class="social-btn" title="Email" aria-label="Email" data-zh-title="邮箱" data-zh-label="邮箱">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                 </a>
-                <a href="https://github.com/lzz335" target="_blank" class="social-btn" title="GitHub">
-                    <i class="fab fa-github"></i>
+                <a href="https://github.com/lzz335" target="_blank" rel="noopener" class="social-btn" title="GitHub" aria-label="GitHub">
+                    <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
-                <a href="https://scholar.google.com" target="_blank" class="social-btn" title="Google Scholar">
-                    <i class="fas fa-graduation-cap"></i>
+                <a href="https://scholar.google.com" target="_blank" rel="noopener" class="social-btn" title="Google Scholar" aria-label="Google Scholar">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
     </aside>
 
+    <!-- ================= Main ================= -->
     <main class="main-content">
-        
-        <section>
-            <div class="section-header">
-                <h2>Profile</h2>
+
+        <!-- About -->
+        <section id="about" aria-labelledby="about-title">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow" data-zh="关于">About</span>
+                    <h2 id="about-title" data-zh="个人简介">Profile</h2>
+                </div>
             </div>
-            <div class="bio-text">
-                <p>
-                    I'm <strong>Zhizhao Liu</strong>, currently pursuing a PhD in Computer Science and Technology at the National University of Defense Technology (NUDT). I received my Bachelor's degree from Northeastern University.
+
+            <div class="bio-text reveal">
+                <p data-zh-html="我是<strong>刘志钊</strong>，目前于国防科技大学（NUDT）攻读计算机科学与技术博士学位，本科毕业于东北大学。">
+                    I'm <strong>Zhizhao Liu</strong>, currently pursuing a PhD in Computer Science and Technology at the
+                    National University of Defense Technology (NUDT). I received my Bachelor's degree from Northeastern University.
                 </p>
-                <p>
-                    My research interests primarily lie in <strong>Natural Language Processing</strong>, with a special focus on Retrieval-Augmented Generation (RAG), text generation, and hallucination mitigation. I combine insights from my cross-disciplinary background in mechanical engineering and computational mathematics to approach problems from unique angles.
+                <p data-zh-html="我的研究兴趣主要集中在<strong>自然语言处理</strong>，尤其关注检索增强生成（RAG）、文本生成与幻觉缓解。我也习惯结合机械工程与计算数学的交叉背景，从不同的角度切入问题。">
+                    My research interests primarily lie in <strong>Natural Language Processing</strong>, with a special focus on
+                    Retrieval-Augmented Generation (RAG), text generation, and hallucination mitigation. I combine insights from
+                    my cross-disciplinary background in mechanical engineering and computational mathematics to approach problems
+                    from unique angles.
                 </p>
+                <p data-zh-html="2026 年，我入选中国科协<strong>青年科技人才培育工程（博士生项目）</strong>。">
+                    In 2026, I was selected for the <strong>Young Sci-Tech Talent Cultivation Program (PhD Program)</strong>
+                    of the China Association for Science and Technology
+                    (<span lang="zh-CN">中国科协青年科技人才培育工程博士生项目</span>).
+                </p>
+
+                <p data-zh-html="科研之外，我也喜欢把想法做成真正可用的软件——最近的一个是 <strong>PhotoRecover</strong>，一款免 Root 的安卓数据恢复工具（Windows）。">
+                    Beyond research, I like turning ideas into software people can actually use — most recently
+                    <strong>PhotoRecover</strong>, a no-root Android data-recovery tool for Windows.
+                </p>
+
+                <ul class="facts">
+                    <li><i class="fas fa-file-lines" aria-hidden="true"></i><span data-zh-html="<b>2</b> 篇 CCF-A 论文"><b>2</b> CCF-A papers</span></li>
+                    <li><i class="fas fa-award" aria-hidden="true"></i><span data-zh-html="<b>2026</b> 中国科协人才培育工程"><b>2026</b> CAST Talent Program</span></li>
+                    <li><i class="fas fa-graduation-cap" aria-hidden="true"></i><span data-zh-html="<b>博士</b> · 国防科技大学"><b>PhD</b> at NUDT</span></li>
+                </ul>
             </div>
         </section>
 
-        <section>
-            <div class="section-header">
-                <h2>Selected Papers</h2>
+        <!-- Papers -->
+        <section id="papers" aria-labelledby="papers-title">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow" data-zh="发表论文">Publications</span>
+                    <h2 id="papers-title" data-zh="代表性论文">Selected Papers</h2>
+                </div>
             </div>
 
-            <article class="paper-card">
-                <div class="paper-header">
-                    <div>
-                        <div class="tags" style="margin-bottom:0.5rem;">
-                            <span class="tag tag-new">New</span>
-                            <span class="tag tag-conf">WWW 2026</span>
-                            <span class="tag tag-rank">CCF A</span>
-                        </div>
-                        <a href="https://doi.org/10.1145/3774904.3792085" class="paper-title">
-                            Rethinking the Hidden Risk of Reranking: Achieving Risk-aware Reranking with Information Gain for RAG with LLMs
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="paper-authors">
-                    <strong>Zhizhao Liu</strong>, Zhihua Wen, <strong>Zhiliang Tian*</strong>, Zhen Huang, Miaorong Zhu, Zimian Wei, Yifu Gao, Liang Ding, <strong>Dongsheng Li*</strong>
-                </div>
-                <div class="paper-venue">
-                    Accepted by The Web Conference 2026 (WWW '26), Dubai, UAE. (AI Search Track)
+            <article class="paper-card reveal">
+                <div class="tags">
+                    <span class="tag tag-new" data-zh="最新">New</span>
+                    <span class="tag tag-conf">WWW 2026</span>
+                    <span class="tag tag-rank">CCF A</span>
                 </div>
 
-                <div class="paper-abstract">
-                    <p style="margin:0;">
-                        <strong>Core Finding:</strong> We reveal a counter-intuitive phenomenon where rerankers, while improving ground-truth recall, significantly increase the proportion of "Harmful Documents"—misleading content sharing superficial shortcuts (like high-frequency entities) with the query. 
-                        <br><br>
-                        <strong>Method:</strong> We propose a risk-aware reranking method utilizing Information Gain. By balancing the potential benefit against the risk of retrieved documents (akin to hard negative mining), our approach effectively suppresses harmful noise while maintaining performance.
+                <h3 class="paper-title">
+                    <a href="https://doi.org/10.1145/3774904.3792085">
+                        Rethinking the Hidden Risk of Reranking: Achieving Risk-aware Reranking with Information Gain for RAG with LLMs
+                    </a>
+                </h3>
+
+                <p class="paper-authors">
+                    <strong>Zhizhao Liu</strong>, Zhihua Wen, <strong>Zhiliang Tian*</strong>, Zhen Huang, Miaorong Zhu,
+                    Zimian Wei, Yifu Gao, Liang Ding, <strong>Dongsheng Li*</strong>
+                </p>
+
+                <p class="paper-venue">
+                    <i class="far fa-calendar" aria-hidden="true"></i>
+                    <span data-zh="已被 The Web Conference 2026（WWW '26）接收，阿联酋迪拜（AI Search Track）">Accepted by The Web Conference 2026 (WWW '26), Dubai, UAE. (AI Search Track)</span>
+                </p>
+
+                <div class="abstract">
+                    <p data-zh-html="<strong>核心发现.</strong> 我们揭示了一个反直觉的现象：重排序器在提升真实文档召回率的同时，会显著增加「有害文档」的比例——这些文档通过与查询共享表面捷径（如高频实体）而误导模型。">
+                        <strong>Core finding.</strong> We reveal a counter-intuitive phenomenon where rerankers, while improving
+                        ground-truth recall, significantly increase the proportion of "Harmful Documents"—misleading content
+                        sharing superficial shortcuts (like high-frequency entities) with the query.
+                    </p>
+                    <p data-zh-html="<strong>方法.</strong> 我们提出一种基于信息增益的风险感知重排序方法：在潜在收益与检索文档的风险之间取得平衡（类似难负例挖掘），在保持性能的同时有效抑制有害噪声。">
+                        <strong>Method.</strong> We propose a risk-aware reranking method utilizing Information Gain. By balancing
+                        the potential benefit against the risk of retrieved documents (akin to hard negative mining), our approach
+                        effectively suppresses harmful noise while maintaining performance.
                     </p>
                 </div>
 
-                <div class="paper-img-container">
-                    <img src="https://s41.ax1x.com/2026/01/26/pZR9gUS.png" alt="Reranking Risk Analysis" onerror="this.src='https://imgchr.com/i/pZR9gUS';"> 
-                    </div>
+                <figure class="paper-figure">
+                    <img src="https://s41.ax1x.com/2026/01/26/pZR9gUS.png"
+                         alt="Illustration of the hidden risk of reranking: harmful documents increase after reranking"
+                         loading="lazy" decoding="async"
+                         onerror="this.onerror=null;this.src='https://imgchr.com/i/pZR9gUS';">
+                </figure>
 
-                <div class="btn-group">
-                    <a href="https://doi.org/10.1145/3774904.3792085" class="btn-sm btn-solid">
-                        <i class="fas fa-file-pdf"></i> PDF
+                <div class="btn-row">
+                    <a href="https://doi.org/10.1145/3774904.3792085" class="btn btn-primary">
+                        <i class="fas fa-file-pdf" aria-hidden="true"></i> PDF
                     </a>
-                    <a href="https://github.com/lzz335/hidden_risk_of_reranking" class="btn-sm btn-outline">
-                        <i class="fab fa-github"></i> Code
+                    <a href="https://github.com/lzz335/hidden_risk_of_reranking" target="_blank" rel="noopener" class="btn">
+                        <i class="fab fa-github" aria-hidden="true"></i> <span data-zh="代码">Code</span>
                     </a>
                 </div>
             </article>
 
-            <article class="paper-card">
-                <div class="paper-header">
-                    <div>
-                        <div class="tags" style="margin-bottom:0.5rem;">
-                            <span class="tag tag-conf">WWW 2025</span>
-                            <span class="tag tag-rank">CCF A</span>
-                        </div>
-                        <a href="https://openreview.net/forum?id=3UeAN1zicJ#discussion" class="paper-title">
-                            Scenario-independent Uncertainty Estimation for LLM-based Question Answering via Factor Analysis
-                        </a>
-                    </div>
-                </div>
-                <div class="paper-venue">
-                    Proceedings of the ACM Web Conference 2025 (WWW '25), Sydney, Australia.
+            <article class="paper-card reveal">
+                <div class="tags">
+                    <span class="tag tag-conf">WWW 2025</span>
+                    <span class="tag tag-rank">CCF A</span>
                 </div>
 
-                <div style="display: flex; gap: 1.5rem; margin-top: 1rem; align-items: flex-start; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 240px;">
-                        <p style="font-size: 0.9rem; color: #555; margin: 0;">
-                            A novel plug-and-play framework for enhanced uncertainty estimation in LLM-based QA systems. We introduced scenario-specific sampling and factor analysis models to disentangle uncertainty factors without requiring model retraining.
+                <h3 class="paper-title">
+                    <a href="https://openreview.net/forum?id=3UeAN1zicJ#discussion">
+                        Scenario-independent Uncertainty Estimation for LLM-based Question Answering via Factor Analysis
+                    </a>
+                </h3>
+
+                <p class="paper-venue">
+                    <i class="far fa-calendar" aria-hidden="true"></i>
+                    <span data-zh="ACM Web Conference 2025（WWW '25）会议论文，澳大利亚悉尼">Proceedings of the ACM Web Conference 2025 (WWW '25), Sydney, Australia.</span>
+                </p>
+
+                <div class="paper-split">
+                    <div>
+                        <p style="margin:0; font-size:.89rem; line-height:1.68; color:var(--text-2);"
+                           data-zh="面向基于大模型的问答系统，提出一种可插拔的不确定性估计框架：通过场景化采样与因子分析模型，在不重新训练模型的前提下解耦不确定性来源。">
+                            A novel plug-and-play framework for enhanced uncertainty estimation in LLM-based QA systems.
+                            We introduced scenario-specific sampling and factor analysis models to disentangle uncertainty
+                            factors without requiring model retraining.
                         </p>
-                        <div class="btn-group" style="margin-top: 1rem;">
-                            <a href="https://openreview.net/forum?id=3UeAN1zicJ#discussion" class="btn-sm btn-outline">
-                                <i class="fas fa-external-link-alt"></i> Paper
+
+                        <div class="btn-row" style="margin-top:1rem;">
+                            <a href="https://openreview.net/forum?id=3UeAN1zicJ#discussion" target="_blank" rel="noopener" class="btn">
+                                <i class="fas fa-external-link-alt" aria-hidden="true"></i> <span data-zh="论文">Paper</span>
                             </a>
                         </div>
                     </div>
-                    <div style="width: 180px; flex-shrink: 0;">
-                        <img src="https://s21.ax1x.com/2025/02/01/pEZZWy6.png" alt="Framework Overview" style="width: 100%; border-radius: 6px; border:1px solid #eee;">
-                    </div>
+
+                    <figure class="paper-figure">
+                        <img src="https://s21.ax1x.com/2025/02/01/pEZZWy6.png"
+                             alt="Framework overview of the uncertainty estimation method"
+                             loading="lazy" decoding="async">
+                    </figure>
                 </div>
             </article>
         </section>
 
-        <section>
-            <div class="section-header">
-                <h2>Projects</h2>
+        <!-- Honors -->
+        <section id="honors" aria-labelledby="honors-title">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow" data-zh="荣誉">Recognition</span>
+                    <h2 id="honors-title" data-zh="荣誉与奖励">Honors &amp; Awards</h2>
+                </div>
             </div>
-            
+
+            <article class="honor-card reveal">
+                <div class="medal" aria-hidden="true">
+                    <i class="fas fa-award"></i>
+                </div>
+
+                <div class="honor-body">
+                    <div class="honor-top">
+                        <span class="tag tag-honor" data-zh="入选">Selected</span>
+                        <span class="tag tag-conf" data-zh="博士生项目">PhD Program</span>
+                        <span class="honor-year">2026</span>
+                    </div>
+
+                    <h3 data-zh="青年科技人才培育工程（博士生项目）">Young Sci-Tech Talent Cultivation Program</h3>
+
+                    <p class="honor-org" data-zh-html="中国科学技术协会（CAST） · 中国科协青年科技人才培育工程">
+                        China Association for Science and Technology (CAST) ·
+                        <span lang="zh-CN">中国科协青年科技人才培育工程（博士生项目）</span>
+                    </p>
+
+                    <p class="honor-desc" data-zh="中国科协面向博士研究生设立的国家级人才培育项目，支持在科学技术领域具有突出研究潜力的青年科研人员。">
+                        A national doctoral-student program by CAST that supports young researchers with outstanding
+                        research potential in science and technology.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Software -->
+        <section id="software" aria-labelledby="software-title">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow" data-zh="工程">Engineering</span>
+                    <h2 id="software-title" data-zh="代表软件">Selected Software</h2>
+                </div>
+            </div>
+
+            <article class="software-card reveal">
+                <div class="software-main">
+                    <div class="software-head">
+                        <div class="app-icon" aria-hidden="true">
+                            <i class="fas fa-mobile-screen-button"></i>
+                        </div>
+                        <div>
+                            <div class="tags">
+                                <span class="tag tag-new">v1.0</span>
+                                <span class="tag tag-conf" data-zh="桌面应用">Desktop App</span>
+                                <span class="tag tag-rank">MIT</span>
+                            </div>
+                            <h3 class="software-title">
+                                <a href="https://github.com/lzz335/recover-mobile-phone-data" target="_blank" rel="noopener" data-zh="照片恢复 PhotoRecover">PhotoRecover</a>
+                                <span class="zh" lang="zh-CN">照片恢复</span>
+                            </h3>
+                            <p class="software-sub" data-zh="面向 Windows 的安卓数据恢复工具 · 独立设计与开发 · 2026">
+                                Android data recovery for Windows · designed and built independently · 2026
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="software-desc" data-zh-html="一款<strong>无需 Root</strong> 即可找回安卓手机中被误删照片与文件的桌面工具。它会扫描删除数据真正残留的位置——隐藏的应用缓存、缩略图库与回收站——用缩略图网格预览结果，并把选中的文件恢复到电脑。">
+                        A desktop utility that brings back accidentally deleted photos and files from Android phones
+                        <strong>without root</strong>. It scans the places deleted data actually survives — hidden app
+                        caches, thumbnail stores and recycle bins — previews what it finds in a thumbnail grid, and
+                        restores the selected files back to the PC.
+                    </p>
+
+                    <ul class="software-points">
+                        <li data-zh-html="<strong>双通道连接：</strong>通过 ADB 流式扫描；当无法开启 USB 调试时，回退到 Windows MTP（Shell COM）通道。">
+                            <strong>Dual-channel device access:</strong> streaming scan over ADB, plus a Windows MTP
+                            (Shell COM) fallback when USB debugging is unavailable.
+                        </li>
+                        <li data-zh-html="<strong>残留数据索引：</strong>定位 <code>.photoShare</code>、<code>.thumbcache</code> 及回收站目录中的残留文件，支持按类型、大小、时间与来源目录筛选。">
+                            <strong>Residual-data indexing:</strong> surfaces leftovers in <code>.photoShare</code>,
+                            <code>.thumbcache</code> and trash directories, with filters for type, size, date and source folder.
+                        </li>
+                        <li data-zh-html="<strong>面向真实设备的工作流：</strong>缩略图网格预览、JSON 扫描快照秒级加载，以及支持取消与同名跳过的并发批量导出。">
+                            <strong>Workflow built for real devices:</strong> thumbnail grid with preview, JSON scan
+                            snapshots for instant reload, and a concurrent batch exporter with cancellation and duplicate skipping.
+                        </li>
+                        <li data-zh-html="<strong>已交付而非演示：</strong>通过 PyInstaller 打包为单文件 Windows 程序，内置恢复指南，并在 README 中如实说明能力边界。">
+                            <strong>Shipped, not just demoed:</strong> packaged as a single Windows executable via
+                            PyInstaller, with an in-app recovery guide and a README that states the hard limits instead
+                            of overpromising.
+                        </li>
+                    </ul>
+
+                    <div class="btn-row">
+                        <a href="https://github.com/lzz335/recover-mobile-phone-data" target="_blank" rel="noopener" class="btn btn-primary">
+                            <i class="fab fa-github" aria-hidden="true"></i> <span data-zh="源码">Source</span>
+                        </a>
+                        <a href="https://github.com/lzz335/recover-mobile-phone-data/releases/tag/recover" target="_blank" rel="noopener" class="btn">
+                            <i class="fas fa-download" aria-hidden="true"></i> <span data-zh="下载 v1.0">Download v1.0</span>
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="spec" aria-label="PhotoRecover specification" data-zh-label="PhotoRecover 技术规格">
+                    <dl>
+                        <div><dt data-zh="平台">Platform</dt><dd>Windows 10 / 11 · Android 8+</dd></div>
+                        <div><dt data-zh="通道">Channels</dt><dd data-zh="ADB（USB 调试）· MTP">ADB (USB debugging) · MTP</dd></div>
+                        <div><dt data-zh="技术栈">Stack</dt><dd>Python · Tkinter · Pillow · pywin32 · adb</dd></div>
+                        <div><dt data-zh="输出">Output</dt><dd data-zh="缩略图网格 · JSON 快照 · 批量导出">Thumbnail grid · JSON snapshot · batch export</dd></div>
+                        <div><dt data-zh="打包">Packaging</dt><dd data-zh="v1.0 · 单文件 .exe（PyInstaller）">v1.0 · single-file .exe (PyInstaller)</dd></div>
+                        <div><dt data-zh="许可">License</dt><dd>MIT</dd></div>
+                    </dl>
+                </aside>
+            </article>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" aria-labelledby="projects-title">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow" data-zh="开源">Open Source</span>
+                    <h2 id="projects-title" data-zh="项目">Projects</h2>
+                </div>
+            </div>
+
             <div class="project-grid">
-                <div class="project-card">
-                    <h3 style="margin:0 0 0.5rem 0; font-size:1.1rem;">
-                        <a href="https://github.com/lzz335/easy-get_arxiv-paper" style="color:var(--primary); text-decoration:none;">Easy-Arxiv</a>
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: auto;">
+                <article class="project-card reveal">
+                    <h3><a href="https://github.com/lzz335/easy-get_arxiv-paper" target="_blank" rel="noopener">Easy-Arxiv</a></h3>
+                    <p class="project-desc" data-zh="用于高效检索与管理 arXiv 文献的开源工具。">
                         An open-source tool for efficient retrieval and management of arXiv documents.
                     </p>
-                    <img src="https://s21.ax1x.com/2024/11/23/pAfvi6I.md.png" class="project-img" alt="Easy-Arxiv">
-                    <a href="https://github.com/lzz335/easy-get_arxiv-paper" class="btn-sm btn-outline" style="justify-content:center;">
-                        <i class="fab fa-github"></i> View Code
-                    </a>
-                </div>
-
-                <div class="project-card">
-                    <h3 style="margin:0 0 0.5rem 0; font-size:1.1rem;">
-                        <a href="https://github.com/low-rank-mice" style="color:var(--primary); text-decoration:none;">"Mouse" Community</a>
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: auto;">
-                        Undergraduate recommendation exemption (推免) community for CS/EE students.
-                    </p>
-                    <div style="margin: 1rem 0; font-size: 0.8rem; color: #888;">
-                        <i class="fas fa-users"></i> Mentoring & Resources
+                    <div class="project-thumb">
+                        <img src="https://s21.ax1x.com/2024/11/23/pAfvi6I.md.png" alt="Easy-Arxiv interface" loading="lazy" decoding="async">
                     </div>
-                    <a href="https://github.com/low-rank-mice" class="btn-sm btn-outline" style="justify-content:center;">
-                        <i class="fab fa-qq"></i> Join: 626333094
+                    <a href="https://github.com/lzz335/easy-get_arxiv-paper" target="_blank" rel="noopener" class="btn btn-block">
+                        <i class="fab fa-github" aria-hidden="true"></i> <span data-zh="查看代码">View Code</span>
                     </a>
-                </div>
+                </article>
 
-                <div class="project-card">
-                    <h3 style="margin:0 0 0.5rem 0; font-size:1.1rem;">
-                        <a href="https://github.com/lzz335/VV_chat" style="color:var(--primary); text-decoration:none;">VV Chat</a>
-                    </h3>
-                    <p style="font-size: 0.85rem; color: #666;">
+                <article class="project-card reveal">
+                    <h3><a href="https://github.com/low-rank-mice" target="_blank" rel="noopener">"Mouse" Community</a></h3>
+                    <p class="project-desc" data-zh="面向计算机与电子类学生的推免交流社区。">
+                        Undergraduate recommendation exemption (<span lang="zh-CN">推免</span>) community for CS/EE students.
+                    </p>
+                    <div class="project-visual" aria-hidden="true">
+                        <i class="fas fa-users"></i>
+                        <span data-zh="导师与资源">Mentoring &amp; Resources</span>
+                    </div>
+                    <a href="https://github.com/low-rank-mice" target="_blank" rel="noopener" class="btn btn-block">
+                        <i class="fab fa-qq" aria-hidden="true"></i> <span data-zh="加入：626333094">Join: 626333094</span>
+                    </a>
+                </article>
+
+                <article class="project-card reveal">
+                    <h3><a href="https://github.com/lzz335/VV_chat" target="_blank" rel="noopener">VV Chat</a></h3>
+                    <p class="project-desc" data-zh="基于深度学习的文本到表情包生成系统。">
                         Deep Learning-Based Text-to-Meme Generation System.
                     </p>
-                    <img src="https://s21.ax1x.com/2025/04/07/pEcOoBq.jpg" class="project-img" style="object-fit: contain; background:#f8f9fa;" alt="Meme Example">
-                    <div style="background:#fff1f2; color:#e11d48; padding:0.5rem; border-radius:4px; font-size:0.75rem; margin-bottom:1rem;">
-                        <strong>⚠️ Academic Research Only</strong>
+                    <div class="project-thumb contain">
+                        <img src="https://s21.ax1x.com/2025/04/07/pEcOoBq.jpg" alt="Meme generated by VV Chat" loading="lazy" decoding="async">
                     </div>
-                    <a href="https://github.com/lzz335/VV_chat" class="btn-sm btn-outline" style="justify-content:center;">
-                        <i class="fab fa-github"></i> View Project
+                    <p class="notice">
+                        <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> <span data-zh="仅供学术研究">Academic Research Only</span>
+                    </p>
+                    <a href="https://github.com/lzz335/VV_chat" target="_blank" rel="noopener" class="btn btn-block">
+                        <i class="fab fa-github" aria-hidden="true"></i> <span data-zh="查看项目">View Project</span>
                     </a>
-                </div>
+                </article>
             </div>
         </section>
 
+        <footer class="footer">
+            <span data-zh="© 2026 刘志钊 · 保留所有权利">© 2026 Zhizhao Liu · All rights reserved.</span>
+            <span data-zh="最后更新：2026 年 10 月">Last updated Oct 2026</span>
+        </footer>
+
     </main>
 </div>
+
+<script>
+    (function () {
+        var root = document.documentElement;
+        var toggle = document.getElementById('theme-toggle');
+
+        /* ============================================================
+           Language (EN / 中文) — translations live in data-zh* attributes
+           ============================================================ */
+        var TITLES = { en: 'Zhizhao Liu | Researcher', zh: '刘志钊 | 研究者' };
+        var lang = 'en';
+        var textNodes, htmlNodes, titleNodes, labelNodes, langButtons;
+
+        function toArray(sel) {
+            return Array.prototype.slice.call(document.querySelectorAll(sel));
+        }
+
+        function store(key, value) {
+            try { localStorage.setItem(key, value); } catch (e) { /* file:// or blocked storage */ }
+        }
+
+        function recall(key) {
+            try { return localStorage.getItem(key); } catch (e) { return null; }
+        }
+
+        function captureEnglish() {
+            /* Snapshot the authored English before the first switch to Chinese. */
+            toArray('[data-zh]').forEach(function (el) { el.setAttribute('data-en', el.textContent); });
+            toArray('[data-zh-html]').forEach(function (el) { el.setAttribute('data-en-html', el.innerHTML); });
+            toArray('[data-zh-title]').forEach(function (el) { el.setAttribute('data-en-title', el.getAttribute('title') || ''); });
+            toArray('[data-zh-label]').forEach(function (el) { el.setAttribute('data-en-label', el.getAttribute('aria-label') || ''); });
+        }
+
+        function applyLang(next) {
+            lang = next;
+            var zh = lang === 'zh';
+
+            root.lang = zh ? 'zh-CN' : 'en';
+            root.setAttribute('data-lang', lang);
+            document.title = TITLES[lang];
+
+            textNodes.forEach(function (el) {
+                var v = zh ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+                if (v != null) { el.textContent = v; }
+            });
+            htmlNodes.forEach(function (el) {
+                var v = zh ? el.getAttribute('data-zh-html') : el.getAttribute('data-en-html');
+                if (v != null) { el.innerHTML = v; }
+            });
+            titleNodes.forEach(function (el) {
+                var v = zh ? el.getAttribute('data-zh-title') : el.getAttribute('data-en-title');
+                if (v != null) { el.setAttribute('title', v); }
+            });
+            labelNodes.forEach(function (el) {
+                var v = zh ? el.getAttribute('data-zh-label') : el.getAttribute('data-en-label');
+                if (v != null) { el.setAttribute('aria-label', v); }
+            });
+
+            langButtons.forEach(function (btn) {
+                var on = btn.getAttribute('data-lang-set') === lang;
+                btn.setAttribute('aria-pressed', String(on));
+            });
+
+            paintTheme();
+        }
+
+        captureEnglish();
+
+        textNodes = toArray('[data-zh]');
+        htmlNodes = toArray('[data-zh-html]');
+        titleNodes = toArray('[data-zh-title]');
+        labelNodes = toArray('[data-zh-label]');
+        langButtons = toArray('[data-lang-set]');
+
+        var storedLang = recall('zzl-lang');
+        if (storedLang === 'zh' || storedLang === 'en') {
+            lang = storedLang;
+        } else if (String(navigator.language || '').toLowerCase().indexOf('zh') === 0) {
+            lang = 'zh'; /* first visit from a Chinese browser */
+        }
+
+        langButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var next = btn.getAttribute('data-lang-set');
+                if (next === lang) { return; }
+                applyLang(next);
+                store('zzl-lang', next);
+            });
+        });
+
+        /* ============================================================
+           Theme
+           ============================================================ */
+        var storedTheme = recall('zzl-theme');
+
+        if (storedTheme === 'dark' || storedTheme === 'light') {
+            root.setAttribute('data-theme', storedTheme);
+        }
+
+        function paintTheme() {
+            var dark = root.getAttribute('data-theme') === 'dark';
+            toggle.innerHTML = '<i class="fas fa-' + (dark ? 'sun' : 'moon') + '" aria-hidden="true"></i>';
+            toggle.setAttribute('aria-label', lang === 'zh'
+                ? (dark ? '切换到浅色主题' : '切换到深色主题')
+                : (dark ? 'Switch to light theme' : 'Switch to dark theme'));
+            toggle.setAttribute('aria-pressed', String(dark));
+        }
+
+        toggle.addEventListener('click', function () {
+            var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            store('zzl-theme', next);
+            paintTheme();
+        });
+
+        applyLang(lang);
+
+        var reveals = document.querySelectorAll('.reveal');
+        var reduce = typeof window.matchMedia === 'function'
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if ('IntersectionObserver' in window && !reduce) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+            reveals.forEach(function (el) { io.observe(el); });
+        } else {
+            reveals.forEach(function (el) { el.classList.add('in'); });
+        }
+
+        /* Sidebar scroll-spy */
+        var links = Array.prototype.slice.call(document.querySelectorAll('.side-nav a'));
+        var byId = {};
+        links.forEach(function (link) {
+            var id = link.getAttribute('href').slice(1);
+            if (id) { byId[id] = link; }
+        });
+
+        var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+
+        if ('IntersectionObserver' in window && sections.length) {
+            var activate = function (id) {
+                links.forEach(function (link) {
+                    var on = link === byId[id];
+                    link.classList.toggle('active', on);
+                    if (on) { link.setAttribute('aria-current', 'true'); }
+                    else { link.removeAttribute('aria-current'); }
+                });
+            };
+
+            var spy = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) { activate(entry.target.id); }
+                });
+            }, { rootMargin: '-38% 0px -52% 0px', threshold: 0 });
+
+            sections.forEach(function (section) { spy.observe(section); });
+        }
+    })();
+</script>
 
 </body>
 </html>
